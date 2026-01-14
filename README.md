@@ -8,7 +8,8 @@ So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable d
 ![](docs/hello_world.png)
 
 
-
+# License
+[here](LICENSE)
 
 # credit
 \([LICENSE](https://raw.githubusercontent.com/phil-opp/blog_os/refs/heads/main/LICENSE-MIT)\) Huge thanks to https://os.phil-opp.com/ -- tetanOS is based on it, and I wouldn't be able to do this without this guide. 
