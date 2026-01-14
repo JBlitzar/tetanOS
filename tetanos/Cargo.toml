@@ -17,5 +17,6 @@ bench = false
 
 
 [dependencies]
+bootloader = "0.9"
 
 
