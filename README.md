@@ -1,6 +1,8 @@
 # tetanOS
 <img src="docs/logo.svg" style="width: 100px;">
 
+> *written in Rust, runs on bare metal*
+
 A minimal OS written in Rust. So far, I've mostly been following along with [this series of blog posts](https://os.phil-opp.com/minimal-rust-kernel/). As of yet, the only significant difference this implementation provides is that it's mine.
 
 # Progress
