@@ -21,7 +21,16 @@ Got a VGA buffer implementation up and running, so now we have proper `println!`
 So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable disk image
 ![](docs/hello_world.png)
 
-# Running
+# Quickstart with a prebuilt binary
+
+(generated with `cargo bootimage --release` in `target/x86_64-tetanos/release/bootimage-tetanos.bin`)
+
+```bash
+wget https://github.com/JBlitzar/tetanOS/releases/download/v0.1.0-snake-1/bootimage-tetanos.bin
+qemu-system-x86_64 -drive format=raw,file=bootimage-tetanos.bin
+```
+
+# Running (development)
 
 ```bash
 git clone https://github.com/JBlitzar/tetanOS && cd tetanOS
