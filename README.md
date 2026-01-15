@@ -23,13 +23,13 @@ So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable d
 
 # Running
 
-So far...
-
 ```bash
+git clone https://github.com/JBlitzar/tetanOS && cd tetanOS
 cd tetanos
 cargo install bootimage
 rustup component add rust-src --toolchain nightly-aarch64-apple-darwin
 rustup component add llvm-tools-preview
+brew install qemu
 cargo run
 ```
 
