@@ -8,6 +8,9 @@ A minimal OS written in Rust. So far, I've mostly been following along with [thi
 
 # Progress
 
+Got a VGA buffer implementation up and running, so now we have proper `println!`
+![](docs/vga_buffer.png)
+
 So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable disk image
 ![](docs/hello_world.png)
 
