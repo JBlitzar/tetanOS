@@ -17,6 +17,10 @@ Got a VGA buffer implementation up and running, so now we have proper `println!`
 I've decided to go off-piste to the blog post and I implemented (hacky) keyboard polling
 ![](docs/video_typing1.gif)
 
+Got snake working!!
+
+![](docs/snake_gameplay.gif)
+
 # Running
 
 So far...

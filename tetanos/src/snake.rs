@@ -30,7 +30,7 @@ impl XorShift32 {
         (self.next() as usize % (max - min)) + min
     }
 }
-
+#[derive(Copy, Clone)]
 struct Food {
     x: usize,
     y: usize,
@@ -146,7 +146,12 @@ pub fn go(){
 
 
 
-    let mut food = Food::new_prng(&mut prng);
+
+
+    let mut foods: [Food; 10] = [Food::new(0,0);10];
+    for i in 0..10{
+        foods[i] = Food::new_prng(&mut prng);
+    }
 
 
     
@@ -160,14 +165,25 @@ pub fn go(){
             
         }
         let head = &snake.body[0];
-        let did_eat = head.0 == food.x && head.1 == food.y;
+        let mut did_eat = false;
+        let mut i = 0;
+        for food in &foods {
+
+            if head.0 == food.x && head.1 == food.y {
+                did_eat = true;
+                break;
+            }
+            i += 1;
+        }
         let is_game_over = snake.step(did_eat);
         if (did_eat) {
-            food = Food::new_prng(&mut prng);
+            foods[i] = Food::new_prng(&mut prng);
         }
         WRITER.clear();
         snake.draw(&mut WRITER);
-        food.draw(&mut WRITER);
+        for food in &foods {
+            food.draw(&mut WRITER);
+        }
 
         if is_game_over{
             break;
@@ -177,5 +193,13 @@ pub fn go(){
 
         for _ in 0..500_000 { core::hint::spin_loop(); }
 
+    }
+    WRITER.clear();
+    let WHITE = vga_buffer::ColorCode::new(vga_buffer::Color::White, vga_buffer::Color::Black);
+    let GAME_OVER_MSG = b"GAME OVER!";
+    let start_col = (vga_buffer::BUFFER_WIDTH - GAME_OVER_MSG.len()) / 2;
+    let start_row = vga_buffer::BUFFER_HEIGHT / 2;
+    for (i, &b) in GAME_OVER_MSG.iter().enumerate() {
+        WRITER.write_char_anywhere(start_row, start_col + i, b, WHITE);
     }
 }
