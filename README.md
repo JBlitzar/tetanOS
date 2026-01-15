@@ -8,11 +8,11 @@ A minimal OS written in Rust.
 
 # Progress
 
-Got a VGA buffer implementation up and running, so now we have proper `println!`
-![](docs/vga_buffer.png)
-
 So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable disk image
 ![](docs/hello_world.png)
+
+Got a VGA buffer implementation up and running, so now we have proper `println!`
+![](docs/vga_buffer.png)
 
 I've decided to go off-piste to the blog post and I implemented (hacky) keyboard polling
 ![](docs/video_typing1.gif)

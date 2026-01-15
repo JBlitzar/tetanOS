@@ -41,8 +41,8 @@ struct ScreenChar {
 }
 
 // vga's just like that afaik
-const BUFFER_HEIGHT: usize = 25;
-const BUFFER_WIDTH: usize = 80;
+pub const BUFFER_HEIGHT: usize = 25;
+pub const BUFFER_WIDTH: usize = 80;
 
 
 #[repr(transparent)]
@@ -101,7 +101,7 @@ impl Writer {
         self.set_color(ColorCode::new(Color::White, Color::Black));
     }
 
-    fn clear(&mut self) {
+    pub fn clear(&mut self) {
         for row in 0..BUFFER_HEIGHT {
             for col in 0..BUFFER_WIDTH {
                 self.buffer.chars[row][col].write(ScreenChar {
