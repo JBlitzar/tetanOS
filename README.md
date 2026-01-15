@@ -15,7 +15,7 @@ So far, I've gotten arbitrary strings writable to the VGA buffer in a bootable d
 ![](docs/hello_world.png)
 
 I've decided to go off-piste to the blog post and I implemented (hacky) keyboard polling
-![](docs/video_typing1.webm)
+![](docs/video_typing1.gif)
 
 # Running
 
