@@ -25,10 +25,10 @@ pub enum Color {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(transparent)]
-struct ColorCode(u8);
+pub struct ColorCode(u8);
 
 impl ColorCode {
-    fn new(foreground: Color, background: Color) -> ColorCode {
+    pub fn new(foreground: Color, background: Color) -> ColorCode {
         ColorCode((background as u8) << 4 | (foreground as u8))
     }
 }
@@ -124,6 +124,16 @@ impl Writer {
         }
     }
 
+    pub fn write_char_anywhere(&mut self, row: usize, col: usize, character: u8, color_code: ColorCode) {
+        if row >= BUFFER_HEIGHT || col >= BUFFER_WIDTH {
+            return;
+        }
+        self.buffer.chars[row][col].write(ScreenChar {
+            character,
+            color_code,
+        });
+    }
+
 }
 
 use core::fmt;
@@ -140,7 +150,7 @@ impl fmt::Write for Writer {
 // so this looks like it's really cooked, but lazy static and spin mutex are here for a reason
 // lazy static allows us to have runtime statics that still work in no_std environments
 // spin mutex is just to "add safe interior mutability", whatever that means
-use spin::Mutex;
+use spin::{Mutex, MutexGuard};
 use lazy_static::lazy_static;
 lazy_static! {
     pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
@@ -150,6 +160,9 @@ lazy_static! {
     });
 }
 
+pub fn _get_writer() -> MutexGuard<'static, Writer> {
+    WRITER.lock()
+}
 // copy-pasted from the tutorial
 // nearly copy-pasted from the rust source
 #[macro_export]

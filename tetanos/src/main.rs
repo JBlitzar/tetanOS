@@ -3,6 +3,7 @@
 
 use core::panic::PanicInfo;
 mod vga_buffer;
+mod kb;
 
 
 /// Called on panic
@@ -24,13 +25,20 @@ pub extern "C" fn _start() -> ! {
 
 
 
-    println!("Hello world!");
+    // println!("Hello world!");
 
-    let answer: i32 = 7331 - 5994;
-    println!("7331-5994={}", answer);
+    // let answer: i32 = 7331 - 5994;
+    // println!("7331-5994={}", answer);
 
-    panic!("Some panic message");
+    // panic!("Some panic message");
+    let RED = vga_buffer::ColorCode::new(vga_buffer::Color::Red, vga_buffer::Color::Black);
+    let mut WRITER = vga_buffer::_get_writer();
+    WRITER.write_char_anywhere(10, 10, b'#', RED);
 
 
-    loop {}
+    loop {
+        if let Some(scancode) = kb::read_scancode() {
+            WRITER.write_byte(scancode);
+        }
+    }
 }
